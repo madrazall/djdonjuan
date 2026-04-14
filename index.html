@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DJ Don Juan | Weddings & Events | Central, CT</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --gold-dim: #7a5f28;
+    --black: #080608;
+    --deep: #100d14;
+    --mid: #1a1520;
+    --surface: #221d2a;
+    --text: #f0eaf5;
+    --muted: #9b8faa;
+    --accent: #d4246e;
+    --accent-soft: #ff5fa3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(to bottom, rgba(8,6,8,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(201,168,76,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(212,36,110,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 20% 60%, rgba(100,50,200,0.08) 0%, transparent 60%),
+      var(--black);
+  }
+
+  /* Spinning vinyl */
+  .vinyl {
+    position: absolute;
+    right: -5vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(55vw, 700px);
+    height: min(55vw, 700px);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 50% 50%, #2a2235 0%, #0a0810 30%, #1a1520 35%, #0a0810 40%, #1a1520 45%, #0a0810 50%, #1a1520 55%, #0a0810 60%, #1a1520 65%, #0a0810 70%, #1a1520 100%);
+    animation: spin 18s linear infinite;
+    opacity: 0.35;
+  }
+
+  .vinyl::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18%;
+    height: 18%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold) 0%, var(--gold-dim) 100%);
+    box-shadow: 0 0 30px rgba(201,168,76,0.5);
+  }
+
+  @keyframes spin {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  /* Equalizer bars */
+  .eq-bars {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+    height: 40px;
+    opacity: 0.4;
+  }
+
+  .eq-bar {
+    width: 4px;
+    background: var(--gold);
+    border-radius: 2px;
+    animation: eq 0.8s ease-in-out infinite alternate;
+  }
+
+  .eq-bar:nth-child(1) { animation-delay: 0s; height: 20px; }
+  .eq-bar:nth-child(2) { animation-delay: 0.1s; height: 35px; }
+  .eq-bar:nth-child(3) { animation-delay: 0.2s; height: 15px; }
+  .eq-bar:nth-child(4) { animation-delay: 0.05s; height: 28px; }
+  .eq-bar:nth-child(5) { animation-delay: 0.15s; height: 40px; }
+  .eq-bar:nth-child(6) { animation-delay: 0.25s; height: 22px; }
+  .eq-bar:nth-child(7) { animation-delay: 0.08s; height: 32px; }
+  .eq-bar:nth-child(8) { animation-delay: 0.18s; height: 18px; }
+  .eq-bar:nth-child(9) { animation-delay: 0.28s; height: 38px; }
+  .eq-bar:nth-child(10) { animation-delay: 0.12s; height: 25px; }
+
+  @keyframes eq {
+    from { transform: scaleY(0.3); opacity: 0.5; }
+    to { transform: scaleY(1); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+
+  .hero-tagline span { color: var(--gold-light); font-style: normal; }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: var(--black);
+    padding: 0.9rem 2.2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    padding: 0.9rem 2.2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--gold);
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 7rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-img-placeholder {
+    aspect-ratio: 4/5;
+    background: var(--surface);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: 1px dashed var(--gold-dim);
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+
+  .placeholder-icon {
+    font-size: 3rem;
+    opacity: 0.3;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { color: var(--gold-light); font-style: italic; }
+
+  .about-text {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .stat { text-align: center; }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 7rem 3rem;
+    background: var(--deep);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .services-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .services-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold-dim), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,168,76,0.3);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    color: var(--gold-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .service-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    overflow: hidden;
+    padding: 1.5rem 0;
+    background: var(--gold);
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-track span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+
+  .marquee-dot {
+    color: var(--gold-dim);
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── GALLERY ── */
+  .gallery {
+    padding: 7rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .gallery-header { text-align: center; margin-bottom: 3rem; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    background: var(--surface);
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px dashed rgba(201,168,76,0.2);
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-item:hover { border-color: rgba(201,168,76,0.5); }
+
+  .gallery-item.tall {
+    grid-row: span 2;
+    aspect-ratio: unset;
+  }
+
+  .gallery-item::before {
+    content: '📸';
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.25;
+  }
+
+  .gallery-caption {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 7rem 3rem;
+    background: var(--deep);
+  }
+
+  .testimonials-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .testimonials-header { text-align: center; margin-bottom: 4rem; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    background: var(--surface);
+    border-radius: 4px;
+    padding: 2rem;
+    border-left: 3px solid var(--gold-dim);
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold-dim);
+    position: absolute;
+    top: -0.5rem;
+    left: 1.2rem;
+    line-height: 1;
+    opacity: 0.4;
+  }
+
+  .testimonial-text {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    padding-top: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 7rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info { }
+
+  .contact-phone {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.06em;
+    color: var(--gold-light);
+    margin: 1.5rem 0 0.5rem;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+  .contact-phone:hover { color: var(--gold); }
+
+  .contact-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-detail-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--surface);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  /* ── FORM ── */
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 3px;
+    padding: 0.85rem 1rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .form-group select option { background: var(--deep); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+    color: var(--black);
+    border: none;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.25);
+    margin-top: 0.5rem;
+  }
+
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+  }
+
+  .form-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+  }
+
+  /* ── SUCCESS MESSAGE ── */
+  .success-msg {
+    display: none;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--gold-light);
+    font-style: italic;
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 3rem;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    color: rgba(155,143,170,0.4);
+    font-size: 0.75rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+
+    .about {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      padding: 5rem 1.5rem;
+    }
+
+    .about-img-placeholder { max-height: 280px; }
+
+    .services { padding: 5rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+
+    .gallery { padding: 5rem 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.tall { grid-row: span 1; }
+
+    .testimonials { padding: 5rem 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    .contact {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding: 5rem 1.5rem;
+    }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    .vinyl { opacity: 0.15; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">DJ Don Juan</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="vinyl"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Central, Connecticut's Premier Event DJ</p>
+    <h1 class="hero-name">DJ<br>Don Juan</h1>
+    <p class="hero-tagline">
+      <span>20+ Years</span> of turning up the volume —<br>
+      from packed nightclubs to the dance floor at your wedding.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#contact" class="btn-primary">Book Your Date</a>
+      <a href="tel:8608390437" class="btn-secondary">📞 (860) 839-0437</a>
+    </div>
+  </div>
+
+  <div class="eq-bars">
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Weddings</span><span class="marquee-dot">✦</span>
+    <span>Corporate Events</span><span class="marquee-dot">✦</span>
+    <span>Birthday Parties</span><span class="marquee-dot">✦</span>
+    <span>Club Nights</span><span class="marquee-dot">✦</span>
+    <span>Sweet 16s</span><span class="marquee-dot">✦</span>
+    <span>Private Events</span><span class="marquee-dot">✦</span>
+    <span>Cocktail Hours</span><span class="marquee-dot">✦</span>
+    <span>Anniversary Parties</span><span class="marquee-dot">✦</span>
+    <span>DJ Don Juan</span><span class="marquee-dot">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span>Weddings</span><span class="marquee-dot">✦</span>
+    <span>Corporate Events</span><span class="marquee-dot">✦</span>
+    <span>Birthday Parties</span><span class="marquee-dot">✦</span>
+    <span>Club Nights</span><span class="marquee-dot">✦</span>
+    <span>Sweet 16s</span><span class="marquee-dot">✦</span>
+    <span>Private Events</span><span class="marquee-dot">✦</span>
+    <span>Cocktail Hours</span><span class="marquee-dot">✦</span>
+    <span>Anniversary Parties</span><span class="marquee-dot">✦</span>
+    <span>DJ Don Juan</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img-placeholder">
+    <span class="placeholder-icon">🎧</span>
+    <span>Your Photo Coming Soon</span>
+  </div>
+  <div class="about-text-block">
+    <p class="section-label">The Man Behind the Music</p>
+    <h2 class="section-title">He doesn't just play music —<br>he <em>feels the room.</em></h2>
+    <p class="about-text">
+      DJ Don Juan has been doing this for over two decades, and it shows. He cut his teeth in the nightclub circuit — reading crowds, dropping beats that kept dance floors packed until last call — and that instinct for energy never left him.
+    </p>
+    <p class="about-text">
+      These days, he brings that same magic to your wedding day and special events. He knows when to bring the heat, when to slow it down for a first dance that makes the whole room go quiet, and exactly when to drop that song that gets grandma and your college friends on the floor at the same time.
+    </p>
+    <p class="about-text">
+      Based in Central, CT — serving all of Connecticut and beyond.
+    </p>
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-number">20+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">Songs in the Bag</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">1</span>
+        <span class="stat-label">Goal: Your Best Night</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <p class="section-label">What He Does Best</p>
+      <h2 class="section-title">Every Event Has Its <em>Moment.</em><br>He Makes Sure It Hits.</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">💍</span>
+        <div class="service-name">Weddings</div>
+        <p class="service-desc">From the ceremony processional to the last song of the night, every moment is curated. Cocktail hour vibes, first dance magic, and a reception that goes until the venue kicks you out.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎉</span>
+        <div class="service-name">Private Events</div>
+        <p class="service-desc">Birthday bashes, anniversaries, graduation parties, sweet 16s — whatever the occasion, Don Juan delivers a custom set that fits the crowd perfectly.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏢</span>
+        <div class="service-name">Corporate Events</div>
+        <p class="service-desc">Keep it professional during cocktail hour, then open up the floor for something your team will be talking about Monday morning. Work events don't have to be boring.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎤</span>
+        <div class="service-name">MC Services</div>
+        <p class="service-desc">Need someone to keep the night moving? Don Juan handles announcements, introductions, and crowd energy — smooth, professional, and never awkward.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎵</span>
+        <div class="service-name">Custom Playlists</div>
+        <p class="service-desc">You give him the vibe, he builds the soundtrack. From Top 40 to old school hip hop to that one specific 80s deep cut your dad loves — he's got it.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔊</span>
+        <div class="service-name">Sound & Lighting</div>
+        <p class="service-desc">Professional equipment setup to fill the room with sound and set the mood with lighting. Every setup is tailored to the venue — whether it's a backyard tent or a full ballroom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header">
+    <p class="section-label">The Highlights</p>
+    <h2 class="section-title">Photos <em>Coming Soon</em></h2>
+    <p style="color:var(--muted); margin-top:0.5rem; font-size:0.9rem;">Check back — this gallery fills up fast.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">Photo Coming Soon</div>
+    <div class="gallery-item">Photo Coming Soon</div>
+    <div class="gallery-item">Photo Coming Soon</div>
+    <div class="gallery-item">Photo Coming Soon</div>
+    <div class="gallery-item">Photo Coming Soon</div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <p class="section-label">What People Are Saying</p>
+      <h2 class="section-title">Don't Just Take Our Word For It</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Don Juan had every single person on the dance floor for our whole reception. We gave him a rough idea of what we wanted and he absolutely nailed it. Best decision we made for our wedding.</p>
+        <span class="testimonial-author">— Sarah & Mike, Wedding 2023</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">We hired him for our company party and wow — it started as a quiet networking event and turned into a full-on dance party. Our team is still talking about it months later.</p>
+        <span class="testimonial-author">— Corporate Client, Hartford CT</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">He read the room better than anyone I've ever seen. Perfect transitions, perfect energy. My daughter's sweet 16 was everything she dreamed of and then some.</p>
+        <span class="testimonial-author">— Jennifer R., Glastonbury CT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <p class="section-label">Let's Make It Happen</p>
+    <h2 class="section-title">Your <em>Best Night</em><br>Starts Here.</h2>
+    <p class="contact-sub">Dates book up fast — especially wedding season. Reach out early and let's lock in your event.</p>
+
+    <a href="tel:8608390437" class="contact-phone">(860) 839-0437</a>
+    <p class="contact-sub">Call or text anytime.</p>
+
+    <div class="contact-detail">
+      <div class="contact-detail-icon">📍</div>
+      <span>Central, Connecticut — serving all of CT</span>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">📅</div>
+      <span>Available for weddings, parties & events year-round</span>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">⚡</div>
+      <span>Typically responds within 24 hours</span>
+    </div>
+  </div>
+
+  <div class="contact-form-block">
+    <h3 class="form-title">Send a Message</h3>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="first_name" placeholder="Taylor" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(860) 555-0000">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="event_type">Event Type</label>
+        <select id="event_type" name="event_type" required>
+          <option value="" disabled selected>Select your event</option>
+          <option>Wedding</option>
+          <option>Birthday Party</option>
+          <option>Sweet 16</option>
+          <option>Corporate Event</option>
+          <option>Anniversary</option>
+          <option>Private Party</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="event_date">Event Date</label>
+          <input type="date" id="event_date" name="event_date">
+        </div>
+        <div class="form-group">
+          <label for="guests">Approx. Guest Count</label>
+          <input type="number" id="guests" name="guests" placeholder="150" min="1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell Him About Your Event</label>
+        <textarea id="message" name="message" placeholder="What's the vibe? Any must-play songs? Venue details? Let him know..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send It →</button>
+      <p class="form-note">No spam, ever. Just a conversation about your event.</p>
+    </form>
+    <div class="success-msg" id="successMsg">
+      🎶 Message received! Don Juan will be in touch within 24 hours to talk about your event.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DJ Don Juan</div>
+  <p class="footer-sub">Central, Connecticut · Weddings & Events · (860) 839-0437</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 DJ Don Juan · All rights reserved</p>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('successMsg');
+    form.style.display = 'none';
+    success.style.display = 'block';
+  }
+
+  // Animate sections on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .testimonial-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
